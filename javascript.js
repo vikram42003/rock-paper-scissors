@@ -32,7 +32,7 @@ function playRockPaperScissors(gameCounter) {
     let playerChoice = getPlayerChoice();
 
     if (computerChoice === playerChoice) {
-      alert("It's a tie!");
+      alert(`It's a tie! You picked ${playerChoice} and the Computer also picked ${computerChoice}`);
       continue;
     }
 
