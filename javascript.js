@@ -18,6 +18,9 @@ playRockPaperScissors(gameCounter);
 
 
 function playRockPaperScissors(gameCounter) {
+
+  if (gameCounter == 0) return;
+
   let computerScore = 0;
   let playerScore = 0;
   let roundCounter = 1;
