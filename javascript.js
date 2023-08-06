@@ -10,27 +10,32 @@
 
 "use strict";
 
-let gameCounter = Number(prompt("How many rounds of the game do you want to play", ""))
+let gameCounter = Number(prompt("How many rounds of the game do you want to play", ""));
 playRockPaperScissors(gameCounter);
 
 
 
 
 
-function playRockPaperScissors() {
+function playRockPaperScissors(gameCounter) {
   let computerScore = 0;
   let playerScore = 0;
+  let roundCounter = 1;
 
-  while(gameCounter > 0) {
+  while(roundCounter <= gameCounter) {
+    console.log(roundCounter++);
+
     let computerChoice = getComputerChoice();
     let playerChoice = getPlayerChoice();
 
-    let roundWinner = compareChoices(computerChoice, playerChoice);
-    displyResult(roundWinner);
+    if (computerChoice === playerChoice) {
+      alert("It's a tie!");
+      continue;
+    }
+
+    let roundWinner = displayResult(computerChoice, playerChoice);
 
     roundWinner ? playerScore++ : computerScore++;
-
-    gameCounter--;
   }
   
 
@@ -51,49 +56,45 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
+  let choice;
   do {
-    let Choice = prompt("Rock, Paper or Scissors?").toLowerCase();
-    if (Choice != "rock" || Choice != "paper" || Choice != "scissors") {
+    choice = prompt("Rock, Paper or Scissors?").toLowerCase();
+    if (choice != "rock" && choice != "paper" && choice != "scissors") {
       alert("Invalid option or a typo. Please choose between Rock, Paper and Scissors (case insensitive).")
-      Choice = "wrong";
+      choice = "wrong";
     }
-  } while (Choice === "wrong")
+  } while (choice === "wrong")
   
-  return Choice;
+  return choice;
 }
 
-function compareChoices(computerChoice, playerChoice) {
+function displayResult(computerChoice, playerChoice) {
   if (playerChoice === "rock" && computerChoice === "scissors") {
+    alert("You Won! Rock beats Scissors!");
     return 1;
   }
   else if (playerChoice === "paper" && computerChoice === "rock") {
+    alert("You Won! Paper beats Rock!");
     return 1;
   }
   else if (playerChoice === "scissors" && computerChoice === "paper") {
+    alert("You Won! Scissors beats Paper!");
     return 1;
   }
   else {
+    alert(`You Lost! You picked "${playerChoice}" Computer picked "${computerChoice}!"`);
     return 0;
-  }
-}
-
-function displayResult(roundWinner) {
-  if (roundWinner === 1) {
-    console.log("Player Wins!");
-  }
-  else {
-    console.log("Computer Wins!");
   }
 }
 
 function displayFinalResult(computerScore, playerScore) {
   if (computerScore > playerScore) {
-    console.log("Computer is the Final Winner! :(");
+    alert("Computer is the Final Winner! :(");
   }
   else if (computerScore < playerScore) {
-    console.log("Player is the Final Winner! :)");
+    alert("Player is the Final Winner! :)");
   }
   else {
-    console.log("Its a Draw! :|");
+    alert("Its a Draw! :|");
   }
 }
