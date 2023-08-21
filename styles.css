@@ -1,0 +1,19 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "ADLaM Display", cursive;
+}
+
+h1 {
+  font-size: 5rem;
+  margin: 6vh 10vw;
+  text-align: center;
+  background: linear-gradient(to right, red, red, yellow, green, blue, blue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
