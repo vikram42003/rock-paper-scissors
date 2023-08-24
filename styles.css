@@ -53,3 +53,11 @@ h1 {
 .choices-container img {
   width: 120px;
 }
+
+.log-container p {
+  width: 700px;
+  height: 200px;
+  border: 5px solid grey;
+  background-color: white;
+  margin: 40px auto 0;
+}
