@@ -71,6 +71,10 @@ h1 {
   width: 120px;
 }
 
+.choices-container img:hover {
+  cursor: pointer;
+}
+
 .log-container p {
   width: 700px;
   height: 200px;
