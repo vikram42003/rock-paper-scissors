@@ -6,7 +6,7 @@
 
 body {
   font-family: "ADLaM Display", cursive;
-  background-color: rgb(158, 52, 220);
+  background-image: linear-gradient(to bottom, purple, black, black);
   margin: 0;
 }
 
@@ -38,6 +38,22 @@ h1 {
   width: 200px;
 }
 
+.player-sprite, .computer-sprite {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-sprite > p {
+  color: green;
+  font-size: 2rem;
+}
+
+.computer-sprite > p {
+  color: red;
+  font-size: 2rem;
+}
+
 .scoreboard > p {
   background-color: lightgray;
   font-size: 4rem;
@@ -65,7 +81,11 @@ h1 {
 
 footer {
   text-align: center;
-  background-color: darkmagenta;
+  color: white;
   margin-top: 20px;
   padding: 4px;
+}
+
+footer > a {
+  color: white;
 }
