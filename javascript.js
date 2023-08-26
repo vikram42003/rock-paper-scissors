@@ -10,8 +10,9 @@
 
 "use strict";
 
-let gameCounter = Number(prompt("How many rounds of the game do you want to play", ""));
-playRockPaperScissors(gameCounter);
+const GAME_COUNTER = 5;
+
+playRockPaperScissors(GAME_COUNTER);
 
 
 
@@ -25,8 +26,10 @@ function playRockPaperScissors(gameCounter) {
   let playerScore = 0;
   let roundCounter = 1;
 
+  
+
   while(roundCounter <= gameCounter) {
-    console.log(roundCounter++);
+
 
     let computerChoice = getComputerChoice();
     let playerChoice = getPlayerChoice();
