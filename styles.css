@@ -81,8 +81,15 @@ h1 {
   width: 120px;
 }
 
-.choices-container img:hover {
+.choice-button:hover {
   cursor: pointer;
+  transition: 0.25s;
+  filter: brightness(150%);
+  transform: scale(1.1, 1.1);
+}
+
+.choice-button:active {
+  transform: none;
 }
 
 .log-container p {
@@ -103,4 +110,11 @@ footer {
 
 footer > a {
   color: white;
+}
+
+
+/*  PPROPERTIES TO BE USED WITH JAVASCRIPT  */
+
+.grayscale {
+  filter: grayscale(75%);
 }
