@@ -116,5 +116,6 @@ footer > a {
 /*  PPROPERTIES TO BE USED WITH JAVASCRIPT  */
 
 .grayscale {
+  transition: 0.5s;
   filter: grayscale(75%);
 }

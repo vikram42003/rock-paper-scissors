@@ -28,6 +28,8 @@
 
 "use strict";
 
+// const GAME_COUNTER will be relevant when I change the number of rounds to be based on player input
+// but for now im keeping this in
 const GAME_COUNTER = 5;
 
 let computerScore = 0;
@@ -37,7 +39,6 @@ let roundCounter = 1;
 const buttons = document.getElementsByClassName("choice-button");
 
 for (const button of buttons) {
-  button.addEventListener("click", clickAnimation)
   button.addEventListener("click", playRockPaperScissors);
 }
 
@@ -45,38 +46,63 @@ for (const button of buttons) {
 
 
 
-function playRockPaperScissors(event)
 
 
 
+function playRockPaperScissors(event) {
 
-/*
-
-function playRockPaperScissors(gameCounter) {
-
-  if (gameCounter == 0) return;
+  if (GAME_COUNTER == 0) return;
 
   const scoreboard = document.getElementById("scoreboard");
+  const playerImg = document.getElementById("player-img");
+  const computerImg = document.getElementById("player-img");
 
-  while(roundCounter <= gameCounter) {
-    scoreboard.textContent = `${computerScore} - ${playerScore}`;
+  toggleGrayscale(playerImg, computerImg);
 
-    let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice();
+  scoreboard.textContent = `${computerScore} - ${playerScore}`;
 
-    if (computerChoice === playerChoice) {
-      alert(`It's a tie! You picked ${playerChoice} and the Computer also picked ${computerChoice}`);
-      continue;
-    }
+  let computerChoice = getComputerChoice();
+  computerImg.src = `images/${computerChoice}-hand-icons(EDIT1-)-modified.png`;
 
-    let roundWinner = displayResult(computerChoice, playerChoice);
+  let playerChoice = event.target.id;
+  playerImg.src = `./images/${playerChoice}-hand-icons(EDIT1-)-modified.png`;
 
-    roundWinner ? playerScore++ : computerScore++;
+  if (computerChoice === playerChoice) {
+    addToLog(`It's a tie! You picked ${playerChoice} and the Computer also picked ${computerChoice}`);
+    computerScore++;
+    playerScore++;
   }
+
+  let roundWinner = displayResult(computerChoice, playerChoice);
+
+  roundWinner ? playerScore++ : computerScore++;
   
 
   displayFinalResult(computerScore, playerScore);
 }
+
+
+
+// Make the choice-buttons grayscaled and the player/computer icons ungrayscaled 
+function toggleGrayscale(playerImg, computerImg) {
+  playerImg.classList.remove("grayscale");
+  computerImg.classList.remove("grayscale");
+
+  for (const button of buttons) {
+    button.classList.toggle("grayscale");
+  }
+}
+
+
+function addToLog(message) {
+  const logBox = document.getElementsById("log-box");
+  logBox.innerHTML += `<br>${message}`;
+}
+
+
+
+
+
 
 function getComputerChoice() {
   let Choice = Math.floor(Math.random() * 3);
@@ -89,19 +115,6 @@ function getComputerChoice() {
   else {
     return "scissors";
   }
-}
-
-function getPlayerChoice() {
-  let choice;
-  do {
-    choice = prompt("Rock, Paper or Scissors?").toLowerCase();
-    if (choice != "rock" && choice != "paper" && choice != "scissors") {
-      alert("Invalid option or a typo. Please choose between Rock, Paper and Scissors (case insensitive).")
-      choice = "wrong";
-    }
-  } while (choice === "wrong")
-  
-  return choice;
 }
 
 function displayResult(computerChoice, playerChoice) {
@@ -134,5 +147,3 @@ function displayFinalResult(computerScore, playerScore) {
     alert("Its a Draw! :|");
   }
 }
-
-*/
