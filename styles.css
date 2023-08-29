@@ -48,15 +48,12 @@ h1 {
   justify-content: center;
   align-items: center;
   gap: 60px;
+
+  /*hardcoded margin to cetrally align the scoreboard
+    because the children of this flex container are of unequal sizes
+  */
+  margin-left: 60px;
 }
-
-/*
-
-
-    SCOREBOARD IS NOT CENTERED CORRECTLY SO FIX THAT !!!!
-
-
-*/
 
 .scoreboard-container img {
   width: 200px;

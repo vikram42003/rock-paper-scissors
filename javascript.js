@@ -164,12 +164,15 @@ function computerWinBg() {
 function displayFinalResult() {
   if (computerScore > playerScore) {
     announceWinner("COMPUTER IS THE FINAL WINNER! :(");
+    computerWinBg();
   }
   else if (computerScore < playerScore) {
     announceWinner("PLAYER IS THE FINAL WINNER! :)");
+    playerWinBg();
   }
   else {
     announceWinner("ITS A DRAW! :|");
+    document.body.classList.remove("red-bg", "green-bg");
   }
 
   addToLog("Thank You for playing. Refresh the page to play again!");
