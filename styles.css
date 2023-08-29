@@ -6,8 +6,9 @@
 
 body {
   font-family: "ADLaM Display", cursive;
-  background-color: #E0B0FF; /* Mauve Color (shade of purple) */
+  background-color: #a45ee5; /* Amethyst Color (shade of purple) */
   margin: 0;
+  transition: 1s;
 
   /*Aborting implementing "background-image: gradient" feature
     Change the background to be an animated gradient which changes color based on 
@@ -117,13 +118,12 @@ h1 {
 
 footer {
   text-align: center;
-  color: white;
   margin-top: 20px;
   padding: 4px;
 }
 
 footer > a {
-  color: white;
+  color: black;
 }
 
 .grayscale {
