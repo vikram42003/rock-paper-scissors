@@ -6,13 +6,23 @@
 
 body {
   font-family: "ADLaM Display", cursive;
-  background-image: linear-gradient(to bottom, purple, black, black);
+  background-color: #E0B0FF; /* Mauve Color (shade of purple) */
   margin: 0;
-  transition: background-image 1s;
+
+  /*Aborting implementing "background-image: gradient" feature
+    Change the background to be an animated gradient which changes color based on 
+    winner if you ever come back to this project
+  */
 }
 
-body:active {
-  background-image: linear-gradient(to bottom left, red, black, black);
+.red-bg {
+  transition: 1s;
+  background-color: lightcoral;
+}
+
+.green-bg {
+  transition: 1s;
+  background-color: lightgreen;
 }
 
 h1 {
@@ -115,8 +125,6 @@ footer {
 footer > a {
   color: white;
 }
-
-/*  PPROPERTIES TO BE USED WITH JAVASCRIPT  */
 
 .grayscale {
   transition: 0.5s;
