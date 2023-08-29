@@ -28,10 +28,6 @@
 
 "use strict";
 
-// const GAME_COUNTER will be relevant when I change the number of rounds to be based on player input
-// but for now im keeping this in
-const GAME_COUNTER = 5;
-
 let computerScore = 0;
 let playerScore = 0;
 let roundCounter = 1;
@@ -50,13 +46,9 @@ for (const button of buttons) {
 
 
 function playRockPaperScissors(event) {
-
-  if (GAME_COUNTER == 0) return;
-  if (roundCounter == GAME_COUNTER) return;
-
-  const scoreboard = document.getElementById("scoreboard");
+  const scoreboard = document.querySelector("#scoreboard > p");
   const playerImg = document.getElementById("player-img");
-  const computerImg = document.getElementById("player-img");
+  const computerImg = document.getElementById("computer-img");
 
   toggleGrayscale(playerImg, computerImg);
 
@@ -66,39 +58,19 @@ function playRockPaperScissors(event) {
   let computerChoice = getComputerChoice();
   computerImg.src = `images/${computerChoice}-hand-icons(EDIT1-)-modified.png`;
 
-  if (computerChoice === playerChoice) {
-    addToLog(`It's a tie! You picked ${playerChoice} and the Computer also picked ${computerChoice}`);
-    announceWinner("Its a Draw!");
-    computerScore++;
-    playerScore++;
-    document.body.classList.remove("red-bg", "green-bg");
-  }
-  else {
-    // displayResult will display result in the Log and return 1 or 0
-    // 1 means player wins    0 means computer wins
-    const roundWinner = displayResult(computerChoice, playerChoice);
-    if(roundWinner) {
-      playerWinBg();
-      computerImg.classList.add("grayscale");
-      playerScore++;
-    }
-    else {
-      computerWinBg();
-      playerImg.classList.add("grayscale");
-      computerScore++;
-    }
-  }
-  
+  handleWinner(playerChoice, computerChoice, playerImg, computerImg);
   roundCounter++;
 
-  scoreboard.textContent = `${computerScore} - ${playerScore}`;
+  scoreboard.textContent = `${playerScore} - ${computerScore}`;
 
   toggleButtonGrayscale();
 
-  if (roundCounter === GAME_COUNTER) {
+  if (playerScore === 5 || computerScore === 5) {
     displayFinalResult();
   }
 }
+
+
 
 
 
@@ -127,7 +99,7 @@ function getComputerChoice() {
     return "scissors";
   }
 
-  announceWinner("Computer is choosing");
+  announceWinner("COMPUTER IS CHOOSING");
 
   // Resume execution/break out of loop when 1 sec has passed irl to wait 1 sec while keeping the execution syncronous
   const delayTime = 1000;
@@ -139,8 +111,33 @@ function getComputerChoice() {
   }
 }
 
+function handleWinner(playerChoice, computerChoice, playerImg, computerImg) {
+  if (computerChoice === playerChoice) {
+    addToLog(`ROUND ${roundCounter}: It's a tie! You picked ${playerChoice} and the Computer also picked ${computerChoice}`);
+    announceWinner("ITS A DRAW");
+    computerScore++;
+    playerScore++;
+    document.body.classList.remove("red-bg", "green-bg");
+  }
+  else {
+    // displayResult will display result in the Log and return 1 or 0
+    // 1 means player wins    0 means computer wins
+    const roundWinner = displayResult(computerChoice, playerChoice);
+    if(roundWinner) {
+      playerWinBg();
+      computerImg.classList.add("grayscale");
+      playerScore++;
+    }
+    else {
+      computerWinBg();
+      playerImg.classList.add("grayscale");
+      computerScore++;
+    }
+  }
+}
+
 function addToLog(message) {
-  const logBox = document.getElementsById("log-box");
+  const logBox = document.getElementById("log-box");
   logBox.innerHTML += `<br>${message}`;
 }
 
@@ -151,23 +148,23 @@ function announceWinner(message) {
 
 function displayResult(computerChoice, playerChoice) {
   if (playerChoice === "rock" && computerChoice === "scissors") {
-    addToLog("You Won! Rock beats Scissors!");
-    announceWinner("Player Wins!");
+    addToLog(`ROUND ${roundCounter}: You Won! Rock beats Scissors!`);
+    announceWinner("PLAYER WINS!");
     return 1;
   }
   else if (playerChoice === "paper" && computerChoice === "rock") {
-    addToLog("You Won! Paper beats Rock!");
-    announceWinner("Player Wins!");
+    addToLog(`ROUND ${roundCounter}: You Won! Paper beats Rock!`);
+    announceWinner("PLAYER WINS!");
     return 1;
   }
   else if (playerChoice === "scissors" && computerChoice === "paper") {
-    addToLog("You Won! Scissors beats Paper!");
-    announceWinner("Player Wins!");
+    addToLog(`ROUND ${roundCounter}: You Won! Scissors beats Paper!`);
+    announceWinner("PLAYER WINS!");
     return 1;
   }
   else {
-    addToLog(`You Lost! You picked "${playerChoice}" Computer picked "${computerChoice}!"`);
-    announceWinner("Computer Wins!");
+    addToLog(`ROUND ${roundCounter}: You Lost! You picked "${playerChoice}" Computer picked "${computerChoice}!`);
+    announceWinner("COMPUTER WINS!");
     return 0;
   }
 }
@@ -184,15 +181,15 @@ function computerWinBg() {
   body.classList.add("red-bg");
 }
 
-function displayFinalResult(computerScore, playerScore) {
+function displayFinalResult() {
   if (computerScore > playerScore) {
-    announceWinner("Computer is the Final Winner! :(");
+    announceWinner("COMPUTER IS THE FINAL WINNER! :(");
   }
   else if (computerScore < playerScore) {
-    announceWinner("Player is the Final Winner! :)");
+    announceWinner("PLAYER IS THE FINAL WINNER! :)");
   }
   else {
-    announceWinner("Its a Draw! :|");
+    announceWinner("ITS A DRAW! :|");
   }
 
   addToLog("Thank You for playing. Refresh the page to play again!");
