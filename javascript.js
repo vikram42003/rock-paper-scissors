@@ -52,6 +52,7 @@ for (const button of buttons) {
 function playRockPaperScissors(event) {
 
   if (GAME_COUNTER == 0) return;
+  if (roundCounter == GAME_COUNTER) return;
 
   const scoreboard = document.getElementById("scoreboard");
   const playerImg = document.getElementById("player-img");
@@ -73,12 +74,23 @@ function playRockPaperScissors(event) {
     playerScore++;
   }
 
-  let roundWinner = displayResult(computerChoice, playerChoice);
+  // displayResult will display result in the Log and return 1 or 0
+  // 1 means player wins    0 means computer wins
+  const roundWinner = displayResult(computerChoice, playerChoice);
+  if(roundWinner) {
 
-  roundWinner ? playerScore++ : computerScore++;
+    playerScore++;
+  }
+  else {
+
+    computerScore++;
+  }
   
+  roundCounter++;
 
-  displayFinalResult(computerScore, playerScore);
+  if (roundCounter === GAME_COUNTER) {
+    displayFinalResult();
+  }
 }
 
 
@@ -93,17 +105,6 @@ function toggleGrayscale(playerImg, computerImg) {
   }
 }
 
-
-function addToLog(message) {
-  const logBox = document.getElementsById("log-box");
-  logBox.innerHTML += `<br>${message}`;
-}
-
-
-
-
-
-
 function getComputerChoice() {
   let Choice = Math.floor(Math.random() * 3);
   if (Choice == 0) {
@@ -115,35 +116,50 @@ function getComputerChoice() {
   else {
     return "scissors";
   }
+  // Add a delay function here to wait 1 sec while displaying "Computer is choosing"
+}
+
+function addToLog(message) {
+  const logBox = document.getElementsById("log-box");
+  logBox.innerHTML += `<br>${message}`;
+}
+
+function announceWinner(message) {
+  const roundWinnerBox = document.getElementById("round-winner");
+  roundWinnerBox.textContent = message;
 }
 
 function displayResult(computerChoice, playerChoice) {
   if (playerChoice === "rock" && computerChoice === "scissors") {
-    alert("You Won! Rock beats Scissors!");
+    addToLog("You Won! Rock beats Scissors!");
+    announceWinner("Player Wins!");
     return 1;
   }
   else if (playerChoice === "paper" && computerChoice === "rock") {
-    alert("You Won! Paper beats Rock!");
+    addToLog("You Won! Paper beats Rock!");
+    announceWinner("Player Wins!");
     return 1;
   }
   else if (playerChoice === "scissors" && computerChoice === "paper") {
-    alert("You Won! Scissors beats Paper!");
+    addToLog("You Won! Scissors beats Paper!");
+    announceWinner("Player Wins!");
     return 1;
   }
   else {
-    alert(`You Lost! You picked "${playerChoice}" Computer picked "${computerChoice}!"`);
+    addToLog(`You Lost! You picked "${playerChoice}" Computer picked "${computerChoice}!"`);
+    announceWinner("Computer Wins!");
     return 0;
   }
 }
 
 function displayFinalResult(computerScore, playerScore) {
   if (computerScore > playerScore) {
-    alert("Computer is the Final Winner! :(");
+    announceWinner("Computer is the Final Winner! :(");
   }
   else if (computerScore < playerScore) {
-    alert("Player is the Final Winner! :)");
+    announceWinner("Player is the Final Winner! :)");
   }
   else {
-    alert("Its a Draw! :|");
+    announceWinner("Its a Draw! :|");
   }
 }

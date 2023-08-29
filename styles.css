@@ -8,6 +8,11 @@ body {
   font-family: "ADLaM Display", cursive;
   background-image: linear-gradient(to bottom, purple, black, black);
   margin: 0;
+  transition: background-image 1s;
+}
+
+body:active {
+  background-image: linear-gradient(to bottom left, red, black, black);
 }
 
 h1 {
@@ -20,7 +25,7 @@ h1 {
   color: transparent;
 }
 
-.round-winner > p {
+#round-winner {
   text-align: center;
   margin-top: 2em;
   margin-bottom: -0.5em;
@@ -46,7 +51,8 @@ h1 {
   width: 200px;
 }
 
-.player-sprite, .computer-sprite {
+.player-sprite,
+.computer-sprite {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -61,8 +67,6 @@ h1 {
   color: red;
   font-size: 2rem;
 }
-
-
 
 #scoreboard > p {
   background-color: lightgray;
@@ -111,7 +115,6 @@ footer {
 footer > a {
   color: white;
 }
-
 
 /*  PPROPERTIES TO BE USED WITH JAVASCRIPT  */
 
