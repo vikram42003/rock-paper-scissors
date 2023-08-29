@@ -7,5 +7,4 @@ A rock-paper-scissors game coded in JavaScript. Now with a GUI.
 
 P.S The Confetti, animated gradient backgrounds and other animations will be added if I ever return to this project. Might add Guns too to make it interesting.
 
-
 ROCK PAPER SCISSORS ICON IMAGE SOURCE - https://www.vecteezy.com/vector-art/690792-rock-paper-scissors-hand-icons
