@@ -6,9 +6,7 @@
     1)Change the player choice sprite to their choice
       Change the ".round-winner" text content to say "Computer is choosing"
 
-      WAIT 1 Second
-
-    2)Update the #scoreboard.
+    2)Update the scoreboard.
       Change the ".round-winner" to say "Player/Computer Wins the round"
       The sprite of the loser fades to grey
       Body BG color changes to winners color
