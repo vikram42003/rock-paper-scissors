@@ -63,8 +63,6 @@ function playRockPaperScissors(event) {
 
   scoreboard.textContent = `${playerScore} - ${computerScore}`;
 
-  toggleButtonGrayscale();
-
   if (playerScore === 5 || computerScore === 5) {
     displayFinalResult();
   }
@@ -78,13 +76,6 @@ function playRockPaperScissors(event) {
 function toggleGrayscale(playerImg, computerImg) {
   playerImg.classList.remove("grayscale");
   computerImg.classList.remove("grayscale");
-  toggleButtonGrayscale();
-}
-
-function toggleButtonGrayscale() {
-  for (const button of buttons) {
-    button.classList.toggle("grayscale");
-  }
 }
 
 function getComputerChoice() {
@@ -185,7 +176,6 @@ function displayFinalResult() {
 
   for (const button of buttons) {
     button.removeEventListener("click", playRockPaperScissors);
+    button.classList.add("grayscale");
   }
-
-  toggleButtonGrayscale();
 }
