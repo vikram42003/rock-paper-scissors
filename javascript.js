@@ -98,17 +98,6 @@ function getComputerChoice() {
   else {
     return "scissors";
   }
-
-  announceWinner("COMPUTER IS CHOOSING");
-
-  // Resume execution/break out of loop when 1 sec has passed irl to wait 1 sec while keeping the execution syncronous
-  const delayTime = 1000;
-  while (true) {
-    const now = Date.now();
-    if (Date.now() - now >= delayTime) {
-      break;
-    }
-  }
 }
 
 function handleWinner(playerChoice, computerChoice, playerImg, computerImg) {
